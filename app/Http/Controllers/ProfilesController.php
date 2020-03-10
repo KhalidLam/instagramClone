@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
-        return view('home');
-    }
-
-    public function show(User $user)
-    {   
-        
-        // $user = User::findOrFail($user);
-        return view('home', [
+        return view('profiles.index', [
             'user' => $user
         ]);
     }
+
+    // public function show(User $user)
+    // {   
+    //     $user = User::findOrFail($user);
+    //     return view('profiles.index', [
+    //         'user' => $user
+    //     ]);
+    // }
 }
