@@ -36,6 +36,7 @@ class PostsController extends Controller
         ]);
 
         return redirect('/profile/' . auth()->user()->username);
+        // return redirect()->route('profile.index', ['user' => auth()->user()]);
 
     }
 }

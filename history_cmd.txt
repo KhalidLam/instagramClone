@@ -1,0 +1,139 @@
+    1  git config --global user.name "Gklam"
+    2  git config --global user.name 
+    3  git config --global user.email "khalid.lamsadi@outlook.fr"
+    4  git config --global user.email 
+    5  ?
+    6  help
+    7  ls
+    8  git branch
+    9  cd ..
+   10  git branch
+   11  git clone https://github.com/KhalidLam/exceptional-realty
+   12  ls
+   13  cd exceptional-realty/
+   14  git branch
+   15  git co -b promo-video
+   16  git checkout -b promo-video
+   17  git branch
+   18  ls
+   19  subl .
+   20  git status
+   21  git add .
+   22  git commit -m "add video promo to about page "
+   23  git push origin promo-video
+   24  git checkout master
+   25  git merge promo-video
+   26  git push origin master
+   27  git status
+   28  git add .
+   29  git commit 
+   30  git commit -m "some changes in video src"
+   31  git push
+   32  git clone https://github.com/learn-co-students/my-each-cb-gh-000.git
+   33  git clone https://github.com/learn-co-students/yield-and-return-values-cb-gh-000.git
+   34  git clone https://github.com/jonasschmedtmann/complete-javascript-course.git
+   35  ls
+   36  cd pig-game/
+   37  git init
+   38  git status
+   39  git add .
+   40  touch README.md
+   41  git status
+   42  git add .
+   43  git status
+   44  git commit -m "Initial commit"
+   45  git status
+   46  git remote add origin https://github.com/KhalidLam/Pig-Game.git
+   47  git push -u origin master
+   48  git branch
+   49  git status
+   50  git status
+   51  git status
+   52  git add .
+   53  git add .
+   54  git commit -m 'change border-radius in css file'
+   55  git push
+   56  git push origin master
+   57  git push origin master
+   58  git branch 
+   59  pwd
+   60  git pull --rebase origin master
+   61  git status
+   62  git push
+   63  npm run build-win
+   64  npm
+   65  npm run build-win
+   66  npm install
+   67  run npm install
+   68  git clone https://github.com/ZerBea/hcxdumptool
+   69  git clone https://github.com/KhalidLam/PSD-to-HTML.git
+   70  ls
+   71  git add .
+   72  git commit -m "Add Design folder"
+   73  git push origin master
+   74  git add .
+   75  git commit -m "Add screenshot"
+   76  git push origin master
+   77  git push origin master
+   78  git pull 
+   79  git push origin master
+   80  git pull 
+   81  git filter-branch --prune-empty --subdirectory-filter Design site master
+   82  git add .
+   83  git commit -m "change folder name"
+   84  git push origin master
+   85  git filter-branch --prune-empty --subdirectory-filter Design-Site master
+   86  git pull
+   87  git push origin --delete gh-pages
+   88  git clone https://github.com/wesbos/JavaScript30/tree/master/01%20-%20JavaScript%20Drum%20Kit
+   89  git init
+   90  echo "# blog" >> README.md
+   91  git add .
+   92  git commit -m "init commit"
+   93  git remote add origin https://github.com/KhalidLam/blog.git
+   94  git push -u origin master
+   95  ls
+   96  rm *
+   97  ls
+   98  npm install frontend-master-downloader -g
+   99  frontend-master-downloader -u KhalidLam -p Wu3wX7eEW5kd -c web-development-v2
+  100  frontend-master-downloader -u khalid.lamsadi@outlook.fr -p Gklam147852147 -c web-development-v2
+  101  php --version
+  102  composer --version
+  103  composer global require laravel/installer
+  104   laravel --version
+  105  laravel new blog
+  106  ls
+  107  cd ../
+  108  ls
+  109  mv 'New folder'/ 'Laravel'
+  110  ls
+  111  cs blog/
+  112  cd blog/
+  113  ls
+  114  ls
+  115  php artisan serve
+  116  php artisan serve
+  117  gedit test.txt
+  118  note test.txt
+  119  code test.txt
+  120  code test.txt
+  121  notepad test.txt
+  122  cat test.txt
+  123  nano test.txt
+  124  cd quickstart/
+  125  code .
+  126  code .
+  127  php artisan 
+  128  php artisan help make:controller
+  129  php artisan make:controller ProfilesController
+  130  php artisan help make:model
+  131  php artisan make:model -m Profile
+  132  php artisan migrate
+  133  php artisan tinker
+  134  php artisan make:model Post -m
+  135  php artisan make:model Post -m
+  136  php artisan migrate
+  137  php artisan make:controller PostsController
+  138  php artisan
+  139  history > history_cmd.txt

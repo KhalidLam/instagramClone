@@ -26,37 +26,22 @@
                 Get your hamster tissue box cover 🐹 by @takemymoney👇🏻 --}}
                 {{ $user->profile->bio }}
             </div>
-            <div class="font-weight-bold">
+            <div class="font-weight-bold"> 
                 <a href="{{ $user->profile->website }}" target="_blanc">
                     {{-- https://bit.ly/hamsterbox --}} {{ $user->profile->website }}
                 </a> 
             </div>
         
         </div>
-        
-        <div class="row pt-5">
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=1" class="w-100">
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=2" class="w-100">
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=3" class="w-100">
-            </div>
-        </div>
+    </div>
 
-        <div class="row pt-5">
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=4" class="w-100">
+    <div class="row pt-5">
+        @foreach ( $user->posts as $post)
+            <div class="col-4 col-md-4 align-self-stretch">
+                <img src="/storage/{{ $post->image }}" class="w-100 h-100" style="max-height: 296px">
             </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=5" class="w-100">
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/320/290?random=6" class="w-100">
-            </div>
-        </div>
+        @endforeach
+        
     </div>
 </div>
 @endsection
