@@ -4,25 +4,30 @@
 <div class="container">
     <div class="row ">
         <div class="col-3 p-5">
-            <img src="img/img1.jpg" class="rounded-circle">
+        <img src="{{ asset('img/img1.jpg')}}" class="rounded-circle">
         </div>
 
         <div class="col-9 pt-5">
-            <div><h1>FreeCodeCamp</h1></div>
+            <div><h1>{{ $user->username }}</h1></div>
             <div class="d-flex">
                 <div class="pr-5"><strong>22,523</strong> posts</div>
                 <div class="pr-5"><strong>51,7m</strong> followers</div>
                 <div class="pr-5"><strong>30</strong> following</div>
             </div> 
-            <div class="pt-4 font-weight-bold ">9GAG: Go Fun The World</div>
+             <div class="pt-4 font-weight-bold ">{{--9GAG: Go Fun The World--}} {{ $user->name }}</div> 
             <div>
-                🌟 Get our app for the latest and funniest MEMES and VIDEOS 👉🏻@9gagmobile
+                {{-- 🌟 Get our app for the latest and funniest MEMES and VIDEOS 👉🏻@9gagmobile
                 <br>
                 -
                 <br>
-                Get your hamster tissue box cover 🐹 by @takemymoney👇🏻
+                Get your hamster tissue box cover 🐹 by @takemymoney👇🏻 --}}
+                {{ $user->profile->bio }}
             </div>
-            <div class="font-weight-bold"><a href="https://bit.ly/hamsterbox">https://bit.ly/hamsterbox</a> </div>
+            <div class="font-weight-bold">
+                <a href="{{ $user->profile->website }}" target="_blanc">
+                    {{-- https://bit.ly/hamsterbox --}} {{ $user->profile->website }}
+                </a> 
+            </div>
         
         </div>
         
