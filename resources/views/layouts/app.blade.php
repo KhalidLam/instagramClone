@@ -60,6 +60,10 @@
                                         Add New Post 
                                     </a>
 
+                                    <a class="dropdown-item" href="/profile/{{Auth::user()->username}}" role="button">
+                                        View Profile 
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

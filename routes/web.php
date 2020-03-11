@@ -23,12 +23,15 @@ Route::post('/p', 'PostsController@store')->name('post.store');
 
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
 
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.index');
+
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
 
 Route::get('/home', function(){
     return view('home');
 });
 
-
-// Route::get('/{user}', 'ProfilesController@show')->name('profile.show');
 

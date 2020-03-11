@@ -4,12 +4,15 @@
 <div class="container">
     <div class="row ">
         <div class="col-3 p-5">
-        <img src="{{ asset('img/img1.jpg')}}" class="rounded-circle">
+            <img src="/storage/{{ $user->profile->image }}" class="rounded-circle w-100">
         </div>
 
         <div class="col-9 pt-5">
-            <div class="d-flex justify-content-between align-items-baseline">
+            <div class="d-flex align-items-center">
                 <h1>{{ $user->username }}</h1>
+                <a class="btn btn-outline-secondary ml-3" href="/profile/{{$user->username}}/edit" role="button">
+                    Edit Profile
+                </a>
             </div>
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count()}}</strong> posts</div>

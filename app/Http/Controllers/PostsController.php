@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
-
 use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
