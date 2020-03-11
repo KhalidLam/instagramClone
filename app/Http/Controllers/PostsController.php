@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Intervention\Image\Facades\Image;
+
 class PostsController extends Controller
 {
     public function __construct()
@@ -18,17 +20,19 @@ class PostsController extends Controller
 
     public function store()
     {
-        // dd(request()->all());
 
         $data = request()->validate([
             'caption' => ['required', 'string'],
             'image' => ['required', 'image']
         ]);
 
-        // dd(request('image')->store('/uploads', 'public'));
-        // dd(auth()->user()->posts()->all());
-
         $imagePath = request('image')->store('/uploads', 'public');
+
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        // $image = Image::make(public_path("storage/{$imagePath}"))->fit(500, 500);
+        // $image = Image::make(public_path("storage/{$imagePath}"))->resize(300, 300);
+        // $image = Image::make(public_path("storage/{$imagePath}"))->resize(320, 240);
+        $image->save();
 
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
