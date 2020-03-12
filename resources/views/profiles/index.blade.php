@@ -26,7 +26,8 @@
             <div class="pt-4 font-weight-bold ">{{ $user->name }}</div>
             <div>
                 {{-- {!! str_replace(".","<br>", $user->profile->bio) !!} --}}
-                {!! $user->profile->bio !!}
+                {!! nl2br(e($user->profile->bio)) !!}
+                {{-- <pre>{{ $user->profile->bio }}</pre> --}}
             </div>
             <div class="font-weight-bold">
                 <a href="{{ $user->profile->website }}" target="_blanc">
@@ -39,9 +40,9 @@
 
     <div class="row pt-5">
         @foreach ( $user->posts as $post)
-        <div class="col-4 col-md-4 mb-4 align-self-stretch">
+        <div class="col-4 col-md-4 mb-4  align-self-stretch">
             <a href="/p/{{ $post->id }}">
-                <img class="img" style="object-fit: cover;" height="300" src="/storage/{{ $post->image }}">
+                <img class="img border border-secondary" style="object-fit: cover;" height="300" src="/storage/{{ $post->image }}">
             </a>
         </div>
         @endforeach

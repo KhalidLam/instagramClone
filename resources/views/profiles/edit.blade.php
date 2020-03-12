@@ -58,9 +58,7 @@
                             <label for="bio" class="col-md-4 col-form-label text-md-right">{{ __('Bio') }}</label>
 
                             <div class="col-md-6">
-                                <textarea name="bio" id="bio"  class="form-control @error('bio') is-invalid @enderror" cols="30" rows="10" autocomplete="new-bio">
-                                    {{ old('bio') ?? $user->profile->bio }}
-                                </textarea>
+                                <textarea name="bio" id="bio"  class="form-control @error('bio') is-invalid @enderror" cols="30" rows="10" autocomplete="new-bio">{{ old('bio') ?? $user->profile->bio }}</textarea>
                                 @error('bio')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
