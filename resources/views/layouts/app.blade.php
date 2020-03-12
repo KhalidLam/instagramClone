@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -56,9 +59,15 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="/p/create" role="button">
+                                    @can('update', Auth::user()->profile)
+                                        <a class="dropdown-item" href="/p/create" role="button">
+                                            Add New Post 
+                                        </a>
+                                    @endcan
+                                    
+                                    {{-- <a class="dropdown-item" href="/p/create" role="button">
                                         Add New Post 
-                                    </a>
+                                    </a> --}}
 
                                     <a class="dropdown-item" href="/profile/{{Auth::user()->username}}" role="button">
                                         View Profile 

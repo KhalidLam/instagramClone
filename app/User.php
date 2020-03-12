@@ -37,6 +37,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function boot(){
+
+        parent::boot();
+        
+        static::created(function ($user){
+            $user->profile()->create([
+                
+            ]);
+        });
+    }
+
     // Relationship between User & Profile 
     public function profile()
     {
@@ -53,4 +64,7 @@ class User extends Authenticatable
     {
         return 'username';
     }
+
+    
+
 }
