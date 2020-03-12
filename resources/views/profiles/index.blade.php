@@ -20,21 +20,17 @@
             </div>
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count()}}</strong> posts</div>
-                <div class="pr-5"><strong>51,7m</strong> followers</div>
-                <div class="pr-5"><strong>30</strong> following</div>
+                <div class="pr-5"><strong>199</strong> followers</div>
+                <div class="pr-5"><strong>424</strong> following</div>
             </div>
-            <div class="pt-4 font-weight-bold ">{{--9GAG: Go Fun The World--}} {{ $user->name }}</div>
+            <div class="pt-4 font-weight-bold ">{{ $user->name }}</div>
             <div>
-                {{-- 🌟 Get our app for the latest and funniest MEMES and VIDEOS 👉🏻@9gagmobile
-        <br>
-        -
-        <br>
-        Get your hamster tissue box cover 🐹 by @takemymoney👇🏻 --}}
-                {{ $user->profile->bio }}
+                {{-- {!! str_replace(".","<br>", $user->profile->bio) !!} --}}
+                {!! $user->profile->bio !!}
             </div>
             <div class="font-weight-bold">
                 <a href="{{ $user->profile->website }}" target="_blanc">
-                    {{-- https://bit.ly/hamsterbox --}} {{ $user->profile->website }}
+                    {{ $user->profile->website }}
                 </a>
             </div>
 
