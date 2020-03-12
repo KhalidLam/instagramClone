@@ -35,7 +35,7 @@ class ProfilesController extends Controller
         $dataProfile = $request->validate([
             'website' => ['sometimes', 'url', 'nullable'],
             'bio' => ['sometimes', 'string', 'nullable'],
-            'image' => ['sometimes', 'nullable']
+            'image' => ['sometimes', 'image', 'max:3000']
         ]);   
 
         $dataUser = $request->validate([

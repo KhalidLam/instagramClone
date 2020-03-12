@@ -15,6 +15,10 @@
                     <a class="btn btn-outline-secondary ml-3" href="/profile/{{$user->username}}/edit" role="button">
                         Edit Profile
                     </a>
+                @else 
+                    <a class="btn btn-primary ml-3" href="#" role="button">
+                        Follow
+                    </a>
                 @endcan
 
             </div>
@@ -42,7 +46,7 @@
         @foreach ( $user->posts as $post)
         <div class="col-4 col-md-4 mb-4  align-self-stretch">
             <a href="/p/{{ $post->id }}">
-                <img class="img border border-secondary" style="object-fit: cover;" height="300" src="/storage/{{ $post->image }}">
+                <img class="img border border-secondary" height="300" src="/storage/{{ $post->image }}">
             </a>
         </div>
         @endforeach
