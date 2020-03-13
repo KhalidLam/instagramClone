@@ -43,7 +43,7 @@ class User extends Authenticatable
         
         static::created(function ($user){
             $user->profile()->create([
-                'image' => '/profile/default.png',
+                // 'image' => '/profile/default.png',
             ]);
         });
     }

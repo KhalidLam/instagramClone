@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row ">
         <div class="col-3 p-5">
-            <img src="/storage/{{ $user->profile->image }}" class="rounded-circle w-100">
+            <img src="{{ asset('storage') .'/'. $user->profile->getProfileImage() }}" class="rounded-circle w-100">
         </div>
 
         <div class="col-9 pt-5">
@@ -29,7 +29,6 @@
             </div>
             <div class="pt-4 font-weight-bold ">{{ $user->name }}</div>
             <div>
-                {{-- {!! str_replace(".","<br>", $user->profile->bio) !!} --}}
                 {!! nl2br(e($user->profile->bio)) !!}
                 {{-- <pre>{{ $user->profile->bio }}</pre> --}}
             </div>
@@ -46,7 +45,7 @@
         @foreach ( $user->posts as $post)
         <div class="col-4 col-md-4 mb-4  align-self-stretch">
             <a href="/p/{{ $post->id }}">
-                <img class="img border border-secondary" height="300" src="/storage/{{ $post->image }}">
+                <img class="img border" height="300" src="{{ asset("storage/$post->image") }}">
             </a>
         </div>
         @endforeach
