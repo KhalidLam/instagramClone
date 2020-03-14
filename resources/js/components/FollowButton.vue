@@ -24,13 +24,13 @@
                 axios.post('/follow/' + this.userId)
                     .then(response => {
                         this.status = ! this.status;
-                        console.log(response.data);
+                        // console.log(response.data);
                     })
-                    .catch(error => {
-                        // if(errors.response.status == 401){
-                        //     window.location = '/login';
-                        // }
-                        console.log(error);
+                    .catch(errors => {
+                        if(errors.response.status == 401){
+                            window.location = '/login';
+                        }
+                        // console.log(errors.data.status == 401);
                     })
             }
         },
