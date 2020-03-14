@@ -16,9 +16,10 @@
                         Edit Profile
                     </a>
                 @else 
-                    <a class="btn btn-primary ml-3" href="#" role="button">
+                    {{-- <a class="btn btn-primary ml-3" href="#" role="button">
                         Follow
-                    </a>
+                    </a> --}}
+                    <follow-button user-id="{{ $user->username }}" follows="{{ $follows }}"></follow-button>
                 @endcan
 
             </div>
