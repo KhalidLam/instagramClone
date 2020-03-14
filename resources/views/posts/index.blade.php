@@ -8,8 +8,10 @@
         <div class="col-md-8 pt-3 px-2 border bg-white">
             
             @foreach ($posts as $post)
-                <div class="mb-4">
-                    <img src="storage/{{$post->image}}" class="w-100"  alt="post image">
+                <div class="mb-5 p-0 border border-dark" style="height: 600px">
+                    <a href="/p/{{ $post->id }}">
+                        <img src="{{ asset("storage/$post->image") }}" class="w-100 h-100" alt="post image" style="object-fit:cover">
+                    </a>
                     <p class="h4">{{ $post->caption }}</p>
                 </div>
             @endforeach
