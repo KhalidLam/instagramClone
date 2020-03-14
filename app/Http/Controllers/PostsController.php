@@ -13,6 +13,11 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('posts.index');
+    }
+    
     public function create()
     {
         return view('posts.create');
