@@ -3,19 +3,31 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         {{-- Main section --}}
-        <div class="col-md-8 bg-primary">
+        <div class="col-md-8 pt-3 px-2 border bg-white">
             
-            <h1>.main</h1>
-        
+            @foreach ($posts as $post)
+                <div class="mb-4">
+                    <p class="h3">{{ $post->caption }}</p>
+                    <img src="storage/{{$post->image}}" class="w-100"  alt="">
+                </div>
+            @endforeach
+
+            <div class="d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
+            
         </div>
 
         {{-- Aside Section --}}
-        <div class="col-md-4 bg-secondary">
-
-            <h1>.aside</h1>
-        
+        <div class="col-md-4 py-3 border bg-white">
+            <div class=" ">
+                <h1>{{ auth()->user()->username }}</h1>
+            </div>
         </div>
+
+
     </div>
 
 </div>

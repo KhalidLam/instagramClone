@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -14,8 +15,20 @@ class PostsController extends Controller
     }
 
     public function index()
-    {
-        return view('posts.index');
+    {   
+        
+        // Array of users that the auth user follows
+        // $following = auth()->user()->following->all();
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        
+        // Get Users Id form $following array
+        // foreach ($following as $profile) {
+        //     $users[] = User::find($profile->user_id);
+        // }
+        // $posts = Post::whereIn('user_id', $users)->latest()->get();
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        
+        return view('posts.index', compact('posts'));
     }
     
     public function create()

@@ -44,11 +44,11 @@
 
     <div class="row pt-5">
         @foreach ( $user->posts as $post)
-        <div class="col-4 col-md-4 mb-4  align-self-stretch">
-            <a href="/p/{{ $post->id }}">
-                <img class="img border" height="300" src="{{ asset("storage/$post->image") }}">
-            </a>
-        </div>
+            <div class="col-4 col-md-4 mb-4  align-self-stretch">
+                <a href="/p/{{ $post->id }}">
+                    <img class="img border" height="300" src="{{ asset("storage/$post->image") }}">
+                </a>
+            </div>
         @endforeach
 
     </div>
