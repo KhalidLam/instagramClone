@@ -9,8 +9,8 @@
             
             @foreach ($posts as $post)
                 <div class="mb-4">
-                    <p class="h3">{{ $post->caption }}</p>
-                    <img src="storage/{{$post->image}}" class="w-100"  alt="">
+                    <img src="storage/{{$post->image}}" class="w-100"  alt="post image">
+                    <p class="h4">{{ $post->caption }}</p>
                 </div>
             @endforeach
 
