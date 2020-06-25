@@ -15,7 +15,7 @@
                     <a class="btn btn-outline-secondary ml-3" href="/profile/{{$user->username}}/edit" role="button">
                         Edit Profile
                     </a>
-                @else 
+                @else
                     {{-- <a class="btn btn-primary ml-3" href="#" role="button">
                         Follow
                     </a> --}}
@@ -42,14 +42,20 @@
         </div>
     </div>
 
-    <div class="row pt-5">
-        @foreach ( $user->posts as $post)
-            <div class="col-4 col-md-4 mb-4  align-self-stretch">
+    <div class="row pt-5 border-top">
+
+        @forelse ($user->posts as $post)
+            <div class="col-4 col-md-4 mb-4 align-self-stretch">
                 <a href="/p/{{ $post->id }}">
                     <img class="img border" height="300" src="{{ asset("storage/$post->image") }}">
                 </a>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12  d-flex flex-column  align-items-center text-muted">
+                <i class="fas fa-camera-retro fa-9x"></i>
+                <h1 class="mt-2">No Posts Yet</h1>
+            </div>
+        @endforelse
 
     </div>
 </div>

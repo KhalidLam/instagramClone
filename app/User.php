@@ -40,16 +40,16 @@ class User extends Authenticatable
     protected static function boot(){
 
         parent::boot();
-        
+
         static::created(function ($user){
             $user->profile()->create([
                 // 'image' => '/profile/default.png',
-                
+
             ]);
         });
     }
 
-    // Relationship between User & Profile 
+    // Relationship between User & Profile
     public function profile()
     {
         return $this->hasOne(Profile::class);
@@ -65,12 +65,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Profile::class);
     }
 
-    // change default search by id to username for ex 
+    // change default search by id to username for ex
     public function getRouteKeyName()
     {
         return 'username';
     }
 
-    
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 
 }
