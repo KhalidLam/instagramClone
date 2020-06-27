@@ -94,7 +94,7 @@ class ProfilesController extends Controller
         $q = $request->input('q');
         $user = User::where('username', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->get();
         if (count($user) > 0)
-            return view('home')->withDetails($user)->withQuery($q);
-        return view('home')->withMessage('No results found.');
+            return view('profiles.search')->withDetails($user)->withQuery($q);
+        return view('profiles.search')->withMessage('No results found.');
     }
 }

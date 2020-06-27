@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="max-width: 1100px;">
+<div class="container">
 
     <div class="row justify-content-center align-items-center" style="min-height: 80vh">
 

@@ -137,9 +137,6 @@
 
             @endforelse
 
-            {{-- <div class="d-flex justify-content-center">
-                {{ $posts->links() }}
-            </div> --}}
         </div>
 
         {{-- Aside Section --}}
@@ -163,7 +160,9 @@
 
                 <!-- Suggestion Profiles-->
                 @foreach ($sugg_users as $sugg_user)
-
+                    @if ($loop->iteration == 6)
+                        @break
+                    @endif
                     <div class='suggestions p-2'>
                         <div class="d-flex align-items-center ">
                             <a href="/profile/{{$sugg_user->username}}" style="width: 32px; height: 32px;">
@@ -181,56 +180,6 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class='suggestions p-2'>
-                    <div class="d-flex align-items-center ">
-                        <a href="#" style="width: 32px; height: 32px;">
-                            <img src="{{ asset('storage') .'/profile/default.png' }}" class="rounded-circle w-100">
-                        </a>
-                        <div class='d-flex flex-column pl-3'>
-                            <a href='#' class='h6 m-0 text-dark text-decoration-none' >
-                                <strong>Amine</strong>
-                            </a>
-                            <small class="text-muted">New to Instagram </small>
-                        </div>
-                        <a href="#" class='ml-auto text-info text-decoration-none'>
-                            Follow
-                        </a>
-                    </div>
-                </div>
-
-                <div class='suggestions p-2'>
-                    <div class="d-flex align-items-center ">
-                        <a href="#" style="width: 32px; height: 32px;">
-                            <img src="{{ asset('storage') .'/profile/default.png' }}" class="rounded-circle w-100">
-                        </a>
-                        <div class='d-flex flex-column pl-3'>
-                            <a href='#' class='h6 m-0 text-dark text-decoration-none' >
-                                <strong>Amine</strong>
-                            </a>
-                            <small class="text-muted">Follows you</small>
-                        </div>
-                        <a href="#" class='ml-auto text-info text-decoration-none'>
-                            Follow
-                        </a>
-                    </div>
-                </div>
-
-                <div class='suggestions p-2'>
-                    <div class="d-flex align-items-center ">
-                        <a href="#" style="width: 32px; height: 32px;">
-                            <img src="{{ asset('storage') .'/profile/default.png' }}" class="rounded-circle w-100">
-                        </a>
-                        <div class='d-flex flex-column pl-3'>
-                            <a href='#' class='h6 m-0 text-dark text-decoration-none' >
-                                <strong>Amine</strong>
-                            </a>
-                            <small class="text-muted">Follows you</small>
-                        </div>
-                        <a href="#" class='ml-auto text-info text-decoration-none'>
-                            Follow
-                        </a>
-                    </div>
-                </div> --}}
 
             </div>
 

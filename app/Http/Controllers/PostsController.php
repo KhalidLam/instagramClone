@@ -28,15 +28,24 @@ class PostsController extends Controller
         //     $users[] = User::find($profile->user_id);
         // }
         // $posts = Post::whereIn('user_id', $users)->latest()->get();
-            
+
         $sugg_users = User::all()->reject(function ($user) {
             $users = auth()->user()->following()->pluck('profiles.user_id')->toArray();
             return $user->id == Auth::id() || in_array($user->id, $users);
         });
 
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(10)->getCollection()->shuffle();
 
         return view('posts.index', compact('posts', 'sugg_users'));
+    }
+
+    public function explore()
+    {
+        // $posts = Post::all()->except(Auth::id());
+        $posts = Post::all()->except(Auth::id())->shuffle();;
+
+        return view('posts.explore', compact('posts'));
     }
 
     public function create()

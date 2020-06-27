@@ -66,7 +66,7 @@
                                     <i class="fas fa-home fa-2x"></i>
                                 </a>
                             </li>
-                            <li class="nav-item px-2 {{ Route::is('explore') ? 'active' : '' }}">
+                            <li class="nav-item px-2 {{ Route::is('post.explore') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('/explore') }}">
                                     <i class="far fa-compass fa-2x"></i>
                                 </a>

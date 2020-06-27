@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="row pt-5 border-top">
+    <div class="row pt-4 border-top">
 
         @forelse ($user->posts as $post)
             <div class="col-4 col-md-4 mb-4 align-self-stretch">
