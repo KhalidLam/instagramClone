@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
@@ -86,5 +87,14 @@ class ProfilesController extends Controller
         auth()->user()->update($dataUser);
 
         return redirect('/profile/' . auth()->user()->username);
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        $user = User::where('username', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->get();
+        if (count($user) > 0)
+            return view('home')->withDetails($user)->withQuery($q);
+        return view('home')->withMessage('No results found.');
     }
 }

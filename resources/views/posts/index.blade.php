@@ -7,7 +7,7 @@
         {{-- Main section --}}
         <div class="col-md-8 px-2">
 
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
 
                 <div class="card mx-auto custom-card mb-5" id="prova">
                     <!-- Card Header -->
@@ -123,7 +123,19 @@
 
                 </div>
 
-            @endforeach
+            @empty
+
+                <div class="d-flex justify-content-center p-3 py-5 border bg-white">
+                    <div class="card border-0 text-center">
+                        <img src="{{asset('img/nopost.png')}}" class="card-img-top" alt="..." style="max-width: 330px">
+                        <div class="card-body ">
+                            <h3>No result Found</h3>
+                            <p class="card-text text-muted">We couldn't find any post, Try to follow someone</p>
+                        </div>
+                    </div>
+                </div>
+
+            @endforelse
 
             {{-- <div class="d-flex justify-content-center">
                 {{ $posts->links() }}
@@ -227,7 +239,6 @@
                 <span style='color: #a6b3be;'>© 2020 InstaClone from KhalidLam</span>
             </div>
         </div>
-
 
     </div>
 

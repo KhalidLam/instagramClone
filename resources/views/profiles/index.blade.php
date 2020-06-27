@@ -51,10 +51,18 @@
                 </a>
             </div>
         @empty
-            <div class="col-12  d-flex flex-column  align-items-center text-muted">
+            <div class="col-12 d-flex justify-content-center text-muted">
+                <div class="card border-0 text-center bg-transparent" >
+                    <img src="{{asset('img/noimage.png')}}" class="card-img-top" alt="...">
+                    <div class="card-body ">
+                        <h1>No Posts Yet</h1>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="col-12  d-flex flex-column  align-items-center text-muted">
                 <i class="fas fa-camera-retro fa-9x"></i>
                 <h1 class="mt-2">No Posts Yet</h1>
-            </div>
+            </div> --}}
         @endforelse
 
     </div>

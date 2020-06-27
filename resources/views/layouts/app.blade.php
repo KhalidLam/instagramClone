@@ -41,9 +41,10 @@
                 <!-- Links -->
                 <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
 
-                    <form class="m-auto d-inline w-80">
+                    <form action="/search" method="POST" role="search" class="m-auto d-inline w-80">
+                        @csrf
                         <div class="input-group">
-                            <input class="form-control " type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </form>

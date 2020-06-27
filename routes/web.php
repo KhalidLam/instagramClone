@@ -1,5 +1,9 @@
 <?php
 
+use App\User;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,17 +37,20 @@ Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.index')
 
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
 
+Route::any('/search', 'ProfilesController@search')->name('profile.search');
+
 // Follow Route
 Route::post('/follow/{user}', 'FollowsController@store');
+
+// Comment Route
+Route::resource('comments', 'CommentController');
+
 
 Route::get('/explore', function () {
     return view('explore');
 })->name('explore');
 
+
 // Route::get('/home', function () {
 //     return view('home');
 // });
-
-
-// Comment
-Route::resource('comments', 'CommentController');
