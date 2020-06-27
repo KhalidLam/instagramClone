@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
@@ -27,10 +28,15 @@ class PostsController extends Controller
         //     $users[] = User::find($profile->user_id);
         // }
         // $posts = Post::whereIn('user_id', $users)->latest()->get();
+            
+        $sugg_users = User::all()->reject(function ($user) {
+            $users = auth()->user()->following()->pluck('profiles.user_id')->toArray();
+            return $user->id == Auth::id() || in_array($user->id, $users);
+        });
 
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
 
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'sugg_users'));
     }
 
     public function create()

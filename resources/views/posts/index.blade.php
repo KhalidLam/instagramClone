@@ -28,7 +28,7 @@
                     </div>
 
                     <!-- Card Image -->
-                    <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image">
+                    <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image" style="max-height: 767px">
 
                     <!-- Card Body -->
                     <div class="card-body px-3 py-2">
@@ -62,12 +62,23 @@
                             </form>
                         </div>
                         <div class="flex-row">
+
+                            <!-- Likes -->
                             @if ($post->likes > 0)
                             <h6 class="card-title">
-                                    <strong>{{ $post->likes }} likes</strong>
-                                </h6>
+                                <strong>{{ $post->likes }} likes</strong>
+                            </h6>
                             @endif
-                            <p class="card-text">{{ $post->caption }}</p>
+
+                            {{-- Post Caption --}}
+                            <p class="card-text">
+                                <a href="/profile/{{$post->user->username}}" class="my-0 text-dark text-decoration-none">
+                                    <strong>{{ $post->user->name }}</strong>
+                                </a>
+                                {{ $post->caption }}
+                            </p>
+
+                            <!-- Comment -->
                             <div class="comments">
                                 @foreach ($post->comments as $comment)
                                     @if ($loop->iteration > 2)
@@ -75,15 +86,16 @@
                                     @endif
                                     <p class="mb-1"><strong>{{ $comment->user->name }}</strong>  {{ $comment->body }}</p>
                                 @endforeach
-
                             </div>
+
+                            <!-- Created At  -->
                             <p class="card-text text-muted">{{ $post->created_at->diffForHumans() }}</p>
                         </div>
                     </div>
 
                     <!-- Card Footer -->
                     <div class="card-footer">
-
+                        <!-- Add Comment -->
                         <form action="{{ action('CommentController@store') }}" method="POST">
                             @csrf
                             <div class="form-group mb-0  text-muted">
@@ -129,7 +141,7 @@
                     <a href="/profile/{{Auth::user()->username}}" class='h6 m-0 text-dark text-decoration-none' >
                         <strong>{{ auth()->user()->username }}</strong>
                     </a>
-                    <span class="text-muted ">{{ auth()->user()->name }}</span>
+                    <small class="text-muted ">{{ auth()->user()->name }}</small>
                 </div>
             </div>
 
@@ -138,7 +150,26 @@
                 <h6 class='text-secondary'>Suggestions For You</h5>
 
                 <!-- Suggestion Profiles-->
-                <div class='suggestions p-2'>
+                @foreach ($sugg_users as $sugg_user)
+
+                    <div class='suggestions p-2'>
+                        <div class="d-flex align-items-center ">
+                            <a href="/profile/{{$sugg_user->username}}" style="width: 32px; height: 32px;">
+                                <img src="{{ asset('storage') .'/'. $sugg_user->profile->getProfileImage() }}" class="rounded-circle w-100">
+                            </a>
+                            <div class='d-flex flex-column pl-3'>
+                                <a href="/profile/{{$sugg_user->username}}" class='h6 m-0 text-dark text-decoration-none' >
+                                    <strong>{{ $sugg_user->name}}</strong>
+                                </a>
+                                <small class="text-muted">New to Instagram </small>
+                            </div>
+                            <a href="#" class='ml-auto text-info text-decoration-none'>
+                                Follow
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div class='suggestions p-2'>
                     <div class="d-flex align-items-center ">
                         <a href="#" style="width: 32px; height: 32px;">
                             <img src="{{ asset('storage') .'/profile/default.png' }}" class="rounded-circle w-100">
@@ -147,7 +178,7 @@
                             <a href='#' class='h6 m-0 text-dark text-decoration-none' >
                                 <strong>Amine</strong>
                             </a>
-                            <span class="text-muted">Follows you</span>
+                            <small class="text-muted">New to Instagram </small>
                         </div>
                         <a href="#" class='ml-auto text-info text-decoration-none'>
                             Follow
@@ -164,7 +195,7 @@
                             <a href='#' class='h6 m-0 text-dark text-decoration-none' >
                                 <strong>Amine</strong>
                             </a>
-                            <span class="text-muted">Follows you</span>
+                            <small class="text-muted">Follows you</small>
                         </div>
                         <a href="#" class='ml-auto text-info text-decoration-none'>
                             Follow
@@ -181,13 +212,13 @@
                             <a href='#' class='h6 m-0 text-dark text-decoration-none' >
                                 <strong>Amine</strong>
                             </a>
-                            <span class="text-muted">Follows you</span>
+                            <small class="text-muted">Follows you</small>
                         </div>
                         <a href="#" class='ml-auto text-info text-decoration-none'>
                             Follow
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
