@@ -26,6 +26,17 @@
             </button>
         </div>
 
+
+        <div class="w-full text-center p-t-27 p-b-100">
+            <span class="txt1">
+                Remembered you password?
+            </span>
+
+            <a href="{{ route('login') }}" class="txt2">
+                Go ahead and login
+            </a>
+        </div>
+
     </form>
 
 @endsection

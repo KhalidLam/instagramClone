@@ -37,7 +37,7 @@
                 </span>
 
                 <a href="{{ route('password.request') }}" class="txt2">
-                    User name / password?
+                    Username / password?
                 </a>
             @endif
         </div>
