@@ -14,7 +14,7 @@
                     <div class="card-header d-flex justify-content-between align-items-center bg-white px-3 py-3">
                         <div class="d-flex align-items-center">
                             <a href="/profile/{{$post->user->username}}" style="width: 32px; height: 32px;">
-                                <img src="{{ asset('storage') .'/'. $post->user->profile->getProfileImage() }}" class="rounded-circle w-100">
+                                <img src="{{ asset($post->user->profile->getProfileImage()) }}" class="rounded-circle w-100">
                             </a>
                             <a href="/profile/{{$post->user->username}}" class="my-0 ml-3 text-dark text-decoration-none">
                                 {{ $post->user->name }}
@@ -144,7 +144,7 @@
             <!-- User Info -->
             <div class="d-flex align-items-center mb-3">
                 <a href="/profile/{{Auth::user()->username}}" style="width: 56px; height: 56px;">
-                    <img src="{{ asset('storage') .'/'. Auth::user()->profile->getProfileImage() }}" class="rounded-circle w-100">
+                    <img src="{{ asset(Auth::user()->profile->getProfileImage()) }}" class="rounded-circle w-100">
                 </a>
                 <div class='d-flex flex-column pl-3'>
                     <a href="/profile/{{Auth::user()->username}}" class='h6 m-0 text-dark text-decoration-none' >
@@ -166,7 +166,7 @@
                     <div class='suggestions p-2'>
                         <div class="d-flex align-items-center ">
                             <a href="/profile/{{$sugg_user->username}}" style="width: 32px; height: 32px;">
-                                <img src="{{ asset('storage') .'/'. $sugg_user->profile->getProfileImage() }}" class="rounded-circle w-100">
+                                <img src="{{ asset($sugg_user->profile->getProfileImage()) }}" class="rounded-circle w-100">
                             </a>
                             <div class='d-flex flex-column pl-3'>
                                 <a href="/profile/{{$sugg_user->username}}" class='h6 m-0 text-dark text-decoration-none' >

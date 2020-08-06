@@ -78,7 +78,7 @@
                             </li>
                             <li class="nav-item px-2">
                                 <a href="/profile/{{Auth::user()->username}}" class="nav-link" style="width: 42px; height: 22px; padding-top: 6px;" >
-                                    <img src="{{ asset('storage') .'/'. Auth::user()->profile->getProfileImage() }}" class="rounded-circle w-100">
+                                    <img src="{{ asset(Auth::user()->profile->getProfileImage())  }}" class="rounded-circle w-100">
                                     {{-- <i class="far fa-user fa-2x"></i> --}}
                                 </a>
                             </li>

@@ -18,7 +18,7 @@
                         <div class="card-body py-2 px-2">
                             <div class="d-flex align-items-start">
                                 <a href="/profile/{{$post->user->username}}" style="width: 32px; height: 32px;">
-                                    <img src="{{ asset('storage') .'/'. $post->user->profile->getProfileImage() }}" class="rounded-circle w-100">
+                                    <img src="{{ asset($post->user->profile->getProfileImage()) }}" class="rounded-circle w-100">
                                 </a>
                                 <div class='flex-grow-1 d-flex flex-column pl-2'>
                                     <a href="/profile/{{$post->user->username}}" class='h6 m-0 text-dark text-decoration-none' >
