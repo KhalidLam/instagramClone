@@ -24,17 +24,7 @@
                                 {{ $post->user->name }}
                             </a>
                         </div>
-                        <div class="">
-                            {{-- <div class="btn-group">
-                                <button type="button" class="btn btn-link text-muted " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-h"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item" type="button">Got to post</button>
-                                    <button class="dropdown-item" type="button">Cancel</button>
-                                </div>
-                            </div> --}}
-
+                        <div class="card-dots">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-link text-muted " data-toggle="modal" data-target="#unique{{$loop->iteration}}">
                                 <i class="fas fa-ellipsis-h"></i>
@@ -44,22 +34,14 @@
                             <div class="modal fade" id="unique{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                                 <div class="modal-content">
-                                        <ul class="list-group">
-                                            <a href="#"><li class="btn list-group-item">Unfollow</li></a>
-                                            <a href="/p/{{ $post->id }}"><li class="btn list-group-item">Go to post</li></a>
-                                            <a href="#"><li class="btn list-group-item">Cancel</li></a>
-                                        </ul>
-
-                                    {{-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div> --}}
+                                    <ul class="list-group">
+                                        <a href="#"><li class="btn list-group-item">Unfollow</li></a>
+                                        <a href="/p/{{ $post->id }}"><li class="btn list-group-item">Go to post</li></a>
+                                        <a href="#"><li class="btn list-group-item">Cancel</li></a>
+                                    </ul>
                                 </div>
                                 </div>
                             </div>
-                            {{-- <a href="#" class="text-muted ">
-                                <i class="fas fa-ellipsis-h"></i>
-                            </a> --}}
                         </div>
                     </div>
 
@@ -69,16 +51,7 @@
                     <!-- Card Body -->
                     <div class="card-body px-3 py-2">
 
-                        {{-- @if($post->id) --}}
-                            {{-- {{ Form::hidden('paid', 1, ['id' => 'paid']) }} --}}
-                            {{-- <button type="submit" class="btn btn-primary" value="1">Mark Order as Paid</a> --}}
-                        {{-- @else
-                            {{ Form::hidden('paid', 0, ['id' => 'paid']) }}
-                            <button type="submit" class="btn btn-primary" value="0">Mark Order as Unpaid</a>
-                        @endif --}}
-
                         <div class="d-flex flex-row">
-                            {{-- <form method="POST" action="{{url()->action('PostsController@updatelikes', ['post'=>$post->id])}}"> --}}
                             <form method="POST" action="{{url()->action('LikeController@update2', ['like'=>$post->id])}}">
                                 @csrf
                                 @if (true)
@@ -86,10 +59,6 @@
                                 @else
                                     <input id="inputid" name="update" type="hidden" value="0">
                                 @endif
-                                {{-- <input type="hidden" name="post_id" value="{{$post->id}}"> --}}
-                                {{-- <button type="submit" class="btn pl-0">
-                                    <i class="far fa-heart fa-2x"></i>
-                                </button> --}}
 
                                 @if($post->like->isEmpty())
                                     <button type="submit" class="btn pl-0">
@@ -119,10 +88,6 @@
 
                                 @endif
 
-                                {{-- <button name="msg" value="0" type="submit" class="btn">
-                                    <i class="far fa-comment fa-2x"></i>
-                                </button> --}}
-
                                 <button type="submit" class="btn">
                                     <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
                                 </button>
@@ -132,13 +97,8 @@
 
                             <!-- Likes -->
                             @if (count($post->like->where('State',true)) > 0)
-                                {{-- <h6 class="card-title">
-                                    <strong>{{ $post->likes }} likes</strong>
-                                </h6> --}}
 
                                 <h6 class="card-title">
-                                    {{-- <strong>{{ $post->likes }} likes</strong> --}}
-                                    {{-- {{dd(count($post->like->where('State',true)))}} --}}
                                     <strong>{{ count($post->like->where('State',true)) }} likes</strong>
                                 </h6>
                             @endif
@@ -182,16 +142,6 @@
                             </div>
                         </form>
 
-                        {{-- https://laravelcollective.com/docs/6.0/html#installation --}}
-                        {{-- https://laravelcollective.com/docs/6.0/html#installation --}}
-                        {{-- @if (Auth::check())
-                            {{ Form::open(['route' => ['comments.store'], 'method' => 'POST']) }}
-                            <p>{{ Form::textarea('body', old('body')) }}</p>
-                            {{ Form::hidden('post_id', $post->id) }}
-                            <p>{{ Form::submit('Send') }}</p>
-                            {{ Form::close() }}
-                        @endif --}}
-
                     </div>
 
                 </div>
@@ -209,6 +159,8 @@
                 </div>
 
             @endforelse
+
+            {{-- <example-component></example-component> --}} <!-- Testin Infinite scrooling with vue -->
 
         </div>
 

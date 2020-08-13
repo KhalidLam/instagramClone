@@ -21,7 +21,7 @@ class PostsController extends Controller
 
         // Array of users that the auth user follows
         // $following = auth()->user()->following->all();
-        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $users_id = auth()->user()->following()->pluck('profiles.user_id');
 
         // Get Users Id form $following array
         // foreach ($following as $profile) {
@@ -30,19 +30,21 @@ class PostsController extends Controller
         // $posts = Post::whereIn('user_id', $users)->latest()->get();
 
         $sugg_users = User::all()->reject(function ($user) {
-            $users = auth()->user()->following()->pluck('profiles.user_id')->toArray();
-            return $user->id == Auth::id() || in_array($user->id, $users);
+            $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
+            return $user->id == Auth::id() || in_array($user->id, $users_id);
         });
 
+        // Add Auth user id to users id array
+        $users_id = $users_id->push(auth()->user()->id);
+
         // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(10)->getCollection()->shuffle();
+        $posts = Post::whereIn('user_id', $users_id)->with('user')->latest()->paginate(10)->getCollection();
 
         return view('posts.index', compact('posts', 'sugg_users'));
     }
 
     public function explore()
     {
-        // $posts = Post::all()->except(Auth::id());
         $posts = Post::all()->except(Auth::id())->shuffle();;
 
         return view('posts.explore', compact('posts'));
@@ -63,10 +65,6 @@ class PostsController extends Controller
 
         $imagePath = request('image')->store('/uploads', 'public');
 
-        // $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        // $image = Image::make(public_path("storage/{$imagePath}"))->fit(820, 740);
-        // $image = Image::make(public_path("storage/{$imagePath}"))->resize(300, 300);
-        // $image = Image::make(public_path("storage/{$imagePath}"))->resize(1200, null);
         $image = Image::make(public_path("storage/{$imagePath}"))->widen(600, function ($constraint) {
             $constraint->upsize();
         });
@@ -105,10 +103,14 @@ class PostsController extends Controller
             $post->save();
         }
 
-        // dd($request->update, $post, $post->likes, $post->id);
-        // $post->likes = $post->likes + 1;
-        // $post->save();
 
         return Redirect::to('/');
+    }
+
+    // methods for vue api requests
+    public function vue_index()
+    {
+        $data = Post::orderBy('id')->with('user')->latest()->paginate(5);
+        return response()->json($data);
     }
 }

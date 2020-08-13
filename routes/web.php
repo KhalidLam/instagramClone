@@ -33,6 +33,8 @@ Route::post('/p/{post}', 'PostsController@updatelikes')->name('post.update'); //
 
 Route::get('/explore', 'PostsController@explore')->name('post.explore'); // Explore Page
 
+Route::get('/posts', 'PostsController@vue_index'); // Infinite scrolling
+
 // Profile Route
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 
