@@ -9,6 +9,10 @@
 
             @forelse ($posts as $post)
 
+                @php
+                    $state=false;
+                @endphp
+
                 <div class="card mx-auto custom-card mb-5" id="prova">
                     <!-- Card Header -->
                     <div class="card-header d-flex justify-content-between align-items-center bg-white px-3 py-3">
@@ -21,9 +25,41 @@
                             </a>
                         </div>
                         <div class="">
-                            <a href="#" class="text-muted ">
+                            {{-- <div class="btn-group">
+                                <button type="button" class="btn btn-link text-muted " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button">Got to post</button>
+                                    <button class="dropdown-item" type="button">Cancel</button>
+                                </div>
+                            </div> --}}
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-link text-muted " data-toggle="modal" data-target="#unique{{$loop->iteration}}">
                                 <i class="fas fa-ellipsis-h"></i>
-                            </a>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="unique{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                        <ul class="list-group">
+                                            <a href="#"><li class="btn list-group-item">Unfollow</li></a>
+                                            <a href="/p/{{ $post->id }}"><li class="btn list-group-item">Go to post</li></a>
+                                            <a href="#"><li class="btn list-group-item">Cancel</li></a>
+                                        </ul>
+
+                                    {{-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div> --}}
+                                </div>
+                                </div>
+                            </div>
+                            {{-- <a href="#" class="text-muted ">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </a> --}}
                         </div>
                     </div>
 
@@ -42,7 +78,8 @@
                         @endif --}}
 
                         <div class="d-flex flex-row">
-                            <form method="POST" action="{{url()->action('PostsController@updatelikes', ['post'=>$post->id])}}">
+                            {{-- <form method="POST" action="{{url()->action('PostsController@updatelikes', ['post'=>$post->id])}}"> --}}
+                            <form method="POST" action="{{url()->action('LikeController@update2', ['like'=>$post->id])}}">
                                 @csrf
                                 @if (true)
                                     <input id="inputid" name="update" type="hidden" value="1">
@@ -50,12 +87,42 @@
                                     <input id="inputid" name="update" type="hidden" value="0">
                                 @endif
                                 {{-- <input type="hidden" name="post_id" value="{{$post->id}}"> --}}
-                                <button type="submit" class="btn pl-0">
+                                {{-- <button type="submit" class="btn pl-0">
                                     <i class="far fa-heart fa-2x"></i>
-                                </button>
-                                <button name="msg" value="0" type="submit" class="btn">
+                                </button> --}}
+
+                                @if($post->like->isEmpty())
+                                    <button type="submit" class="btn pl-0">
+                                        <i class="far fa-heart fa-2x"></i>
+                                    </button>
+                                @else
+
+                                @foreach($post->like as $likes)
+
+                                    @if($likes->user_id==Auth::User()->id && $likes->State==true)
+                                        @php
+                                            $state=true;
+                                        @endphp
+                                    @endif
+
+                                @endforeach
+
+                                @if( $state)
+                                    <button type="submit" class="btn p-0">
+                                        <i class="fas fa-heart fa-2x" style="color:red"></i>
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn p-0">
+                                        <i class="far fa-heart fa-2x"></i>
+                                    </button>
+                                @endif
+
+                                @endif
+
+                                {{-- <button name="msg" value="0" type="submit" class="btn">
                                     <i class="far fa-comment fa-2x"></i>
-                                </button>
+                                </button> --}}
+
                                 <button type="submit" class="btn">
                                     <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
                                 </button>
@@ -64,10 +131,16 @@
                         <div class="flex-row">
 
                             <!-- Likes -->
-                            @if ($post->likes > 0)
-                            <h6 class="card-title">
-                                <strong>{{ $post->likes }} likes</strong>
-                            </h6>
+                            @if (count($post->like->where('State',true)) > 0)
+                                {{-- <h6 class="card-title">
+                                    <strong>{{ $post->likes }} likes</strong>
+                                </h6> --}}
+
+                                <h6 class="card-title">
+                                    {{-- <strong>{{ $post->likes }} likes</strong> --}}
+                                    {{-- {{dd(count($post->like->where('State',true)))}} --}}
+                                    <strong>{{ count($post->like->where('State',true)) }} likes</strong>
+                                </h6>
                             @endif
 
                             {{-- Post Caption --}}
