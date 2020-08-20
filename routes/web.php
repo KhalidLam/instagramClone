@@ -51,6 +51,11 @@ Route::post('/follow/{user}', 'FollowsController@store');
 //     'likes' => 'LikeController',
 // ]);
 
-Route::get('/story',function(){
-    return view('posts.story');
-});
+// Route::get('/story', function () {
+//     return view('posts.story');
+// });
+
+// Route::resource('stories', 'StoryController');
+
+Route::get('stories/{user}', 'StoryController@show')->name('stories.show');
+

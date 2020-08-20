@@ -37,11 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot(){
+    protected static function boot()
+    {
 
         parent::boot();
 
-        static::created(function ($user){
+        static::created(function ($user) {
             $user->profile()->create([
                 // 'image' => '/profile/default.png',
 
@@ -58,6 +59,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function stories()
+    {
+        return $this->hasMany(Story::class);
     }
 
     public function following()
@@ -80,5 +86,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Like');
     }
-
 }

@@ -4,7 +4,14 @@
 <div class="container">
     <div class="row ">
         <div class="col-3 p-5">
-            <img src="{{ asset($user->profile->getProfileImage()) }}" class="rounded-circle w-100">
+
+            @if ($user->stories->count() > 0)
+                <a href="/stories/{{$user->username}}" >
+                    <img src="{{ asset($user->profile->getProfileImage()) }}" class="border border-danger rounded-circle w-100">
+                </a>
+            @else
+                <img src="{{ asset($user->profile->getProfileImage()) }}" class="rounded-circle w-100">
+            @endif
         </div>
 
         <div class="col-9 pt-5">
