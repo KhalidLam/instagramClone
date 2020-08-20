@@ -10,9 +10,10 @@ window.Vue = require('vue');
 
 Vue.use(require('vue-resource'));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Trying to implement infinite scrolling in home page
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
-Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

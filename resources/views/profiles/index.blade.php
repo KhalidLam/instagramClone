@@ -16,9 +16,6 @@
                         Edit Profile
                     </a>
                 @else
-                    {{-- <a class="btn btn-primary ml-3" href="#" role="button">
-                        Follow
-                    </a> --}}
                     <follow-button user-id="{{ $user->username }}" follows="{{ $follows }}"></follow-button>
                 @endcan
 
@@ -31,7 +28,6 @@
             <div class="pt-4 font-weight-bold ">{{ $user->name }}</div>
             <div>
                 {!! nl2br(e($user->profile->bio)) !!}
-                {{-- <pre>{{ $user->profile->bio }}</pre> --}}
             </div>
             <div class="font-weight-bold">
                 <a href="{{ $user->profile->website }}" target="_blanc">
@@ -59,10 +55,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-12  d-flex flex-column  align-items-center text-muted">
-                <i class="fas fa-camera-retro fa-9x"></i>
-                <h1 class="mt-2">No Posts Yet</h1>
-            </div> --}}
         @endforelse
 
     </div>
