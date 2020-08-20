@@ -26,18 +26,18 @@
                         </div>
                         <div class="card-dots">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-link text-muted " data-toggle="modal" data-target="#unique{{$loop->iteration}}">
+                            <button type="button" class="btn btn-link text-muted" data-toggle="modal" data-target="#post{{$post->id}}">
                                 <i class="fas fa-ellipsis-h"></i>
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="unique{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="post{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                                 <div class="modal-content">
                                     <ul class="list-group">
                                         <a href="#"><li class="btn list-group-item">Unfollow</li></a>
                                         <a href="/p/{{ $post->id }}"><li class="btn list-group-item">Go to post</li></a>
-                                        <a href="#"><li class="btn list-group-item">Cancel</li></a>
+                                        <a href="#"><li class="btn list-group-item" data-dismiss="modal">Cancel</li></a>
                                     </ul>
                                 </div>
                                 </div>
@@ -66,45 +66,65 @@
                                     </button>
                                 @else
 
-                                @foreach($post->like as $likes)
+                                    @foreach($post->like as $likes)
 
-                                    @if($likes->user_id==Auth::User()->id && $likes->State==true)
-                                        @php
-                                            $state=true;
-                                        @endphp
+                                        @if($likes->user_id==Auth::User()->id && $likes->State==true)
+                                            @php
+                                                $state=true;
+                                            @endphp
+                                        @endif
+
+                                    @endforeach
+
+                                    @if($state)
+                                        <button type="submit" class="btn pl-0">
+                                            <i class="fas fa-heart fa-2x" style="color:red"></i>
+                                        </button>
+                                    @else
+                                        <button type="submit" class="btn pl-0">
+                                            <i class="far fa-heart fa-2x"></i>
+                                        </button>
                                     @endif
 
-                                @endforeach
-
-                                @if( $state)
-                                    <button type="submit" class="btn p-0">
-                                        <i class="fas fa-heart fa-2x" style="color:red"></i>
-                                    </button>
-                                @else
-                                    <button type="submit" class="btn p-0">
-                                        <i class="far fa-heart fa-2x"></i>
-                                    </button>
                                 @endif
 
-                                @endif
+                                <a href="/p/{{ $post->id }}" class="btn pl-0">
+                                    <i class="far fa-comment fa-2x"></i>
+                                </a>
 
-                                <button type="submit" class="btn">
-                                    <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
+                                <!-- Share Button trigger modal -->
+                                <button type="button" class="btn pl-0 pt-0" data-toggle="modal" data-target="#sharebtn{{$post->id}}">
+                                    <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="22" viewBox="0 0 48 48" width="21"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
                                 </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="sharebtn{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" style="position: absolute; left: -1000px; top: -1000px">
+                                                <input type="text" value="http://localhost:8000/p/{{ $post->id }}" id="copy_{{ $post->id }}" />
+                                            </li>
+                                            <li class="btn list-group-item" data-dismiss="modal" onclick="copyToClipboard('copy_{{ $post->id }}')">Copy Link</li>
+                                            <li class="btn list-group-item" data-dismiss="modal">Cancel</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                         <div class="flex-row">
 
                             <!-- Likes -->
                             @if (count($post->like->where('State',true)) > 0)
-
                                 <h6 class="card-title">
                                     <strong>{{ count($post->like->where('State',true)) }} likes</strong>
                                 </h6>
                             @endif
 
                             {{-- Post Caption --}}
-                            <p class="card-text">
+                            <p class="card-text mb-1">
                                 <a href="/profile/{{$post->user->username}}" class="my-0 text-dark text-decoration-none">
                                     <strong>{{ $post->user->name }}</strong>
                                 </a>
@@ -113,10 +133,10 @@
 
                             <!-- Comment -->
                             <div class="comments">
-                                @foreach ($post->comments as $comment)
-                                    @if ($loop->iteration > 2)
-                                        @break
-                                    @endif
+                                @if (count($post->comments) > 0)
+                                    <a href="/p/{{ $post->id }}" class="text-muted">View all {{count($post->comments)}} comments</a>
+                                @endif
+                                @foreach ($post->comments->sortByDesc("created_at")->take(2) as $comment)
                                     <p class="mb-1"><strong>{{ $comment->user->name }}</strong>  {{ $comment->body }}</p>
                                 @endforeach
                             </div>
@@ -152,7 +172,7 @@
                     <div class="card border-0 text-center">
                         <img src="{{asset('img/nopost.png')}}" class="card-img-top" alt="..." style="max-width: 330px">
                         <div class="card-body ">
-                            <h3>No result Found</h3>
+                            <h3>No Post found</h3>
                             <p class="card-text text-muted">We couldn't find any post, Try to follow someone</p>
                         </div>
                     </div>
@@ -219,9 +239,18 @@
 </div>
 @endsection
 
-{{--
+
 @section('exscript')
     <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+        }
+    </script>
+
+    {{-- <script>
 
         document.addEventListener('submit', function(e){
             e.preventDefault()
@@ -252,5 +281,5 @@
                 console.log(content);
             })();
 
-    </script>
-@endsection --}}
+    </script> --}}
+@endsection

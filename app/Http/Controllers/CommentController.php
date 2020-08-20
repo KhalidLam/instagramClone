@@ -43,7 +43,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+
         $post = Post::findOrFail($request->post_id);
 
         Comment::create([
@@ -51,6 +51,10 @@ class CommentController extends Controller
             'user_id' => Auth::id(),
             'post_id' => $post->id
         ]);
+
+        if ($request->redirect) {
+            return redirect()->route('post.show', compact('post'));
+        }
 
         return redirect()->route('post.index');
     }

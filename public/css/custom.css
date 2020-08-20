@@ -31,3 +31,7 @@ body {
 textarea {
     resize: none;
 }
+
+.btn:focus {
+  box-shadow: none;
+}

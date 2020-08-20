@@ -44,9 +44,7 @@
                                         <a href="/profile/{{$post->user->username}}" class="my-0 text-dark text-decoration-none">
                                             <strong> {{ $post->user->name }}</strong>
                                         </a>
-                                        expanding crochet⠀📹@littlebluehook⠀
-                                        -⠀
-                                        #scheepjeswip #9gag #snufflebeanyarn #crochet
+                                        {{ $post->caption }}
                                     </p>
                                 </div>
                             </div>
@@ -76,17 +74,48 @@
                             <!-- Post State -->
                             <div class="py-2 px-3 border">
                                 <div class="d-flex flex-row">
+                                    {{-- Like Btn --}}
                                     <button type="submit" class="btn pl-0">
                                         <i class="far fa-heart fa-2x"></i>
                                     </button>
-                                    <button name="msg" value="0" type="submit" class="btn">
+
+                                    {{-- Comment Btn --}}
+                                    <button name="msg" value="0" type="button" class="btn pl-0">
                                         <i class="far fa-comment fa-2x"></i>
                                     </button>
-                                    <button type="submit" class="btn">
-                                        <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
+
+                                    {{-- <button type="button" class="btn pl-0 pt-0">
+                                        <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="22" viewBox="0 0 48 48" width="21"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
+                                    </button> --}}
+
+                                    <!-- Share Button trigger modal -->
+                                    <button type="button" class="btn pl-0 pt-0" data-toggle="modal" data-target="#sharebtn{{$post->id}}">
+                                        <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="22" viewBox="0 0 48 48" width="21"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="sharebtn{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <ul class="list-group">
+                                                <li class="list-group-item" style="position: absolute; left: -1000px; top: -1000px">
+                                                    <input type="text" value="http://localhost:8000/p/{{ $post->id }}" id="copy_{{ $post->id }}" />
+                                                </li>
+                                                <li class="btn list-group-item" data-dismiss="modal" onclick="copyToClipboard('copy_{{ $post->id }}')">Copy Link</li>
+                                                <li class="btn list-group-item" data-dismiss="modal">Cancel</li>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <p class="m-0"><strong>{{ $post->likes }} likes</strong></p>
+
+                                {{-- Post Likes --}}
+                                @if ($post->likes > 0)
+                                    <p class="m-0"><strong>{{ $post->likes }} likes</strong></p>
+                                @endif
+
+                                {{-- Post Date --}}
                                 <p class="m-0"><small class="text-muted">{{ strtoupper($post->created_at->diffForHumans()) }}</small></p>
                             </div>
 
@@ -96,6 +125,7 @@
                                 <div class="form-group mb-0 text-muted">
                                     <div class="input-group is-invalid">
                                         <input type="hidden" name="post_id" value="{{$post->id}}">
+                                        <input type="hidden" name="redirect" value="show">
                                         <textarea class="form-control py-2 px-3" id="body" name='body' rows="1" placeholder="Add a comment..."></textarea>
                                         <div class="input-group-append">
                                             <button class="btn btn-md btn-outline-info" type="submit">Post</button>
@@ -113,4 +143,15 @@
     </div>
 
 </div>
+@endsection
+
+@section('exscript')
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+        }
+    </script>
 @endsection

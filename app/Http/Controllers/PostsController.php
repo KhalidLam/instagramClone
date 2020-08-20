@@ -20,15 +20,9 @@ class PostsController extends Controller
     {
 
         // Array of users that the auth user follows
-        // $following = auth()->user()->following->all();
         $users_id = auth()->user()->following()->pluck('profiles.user_id');
 
         // Get Users Id form $following array
-        // foreach ($following as $profile) {
-        //     $users[] = User::find($profile->user_id);
-        // }
-        // $posts = Post::whereIn('user_id', $users)->latest()->get();
-
         $sugg_users = User::all()->reject(function ($user) {
             $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
             return $user->id == Auth::id() || in_array($user->id, $users_id);
