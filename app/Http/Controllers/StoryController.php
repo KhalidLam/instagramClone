@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Story;
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class StoryController extends Controller
 {
@@ -28,7 +29,7 @@ class StoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('stories.create');
     }
 
     /**
@@ -39,7 +40,21 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'image' => ['required', 'image']
+        ]);
+
+        $imagePath = request('image')->store('/story', 'public');
+
+        $image = Image::make(public_path("storage/{$imagePath}"));
+
+        $image->save();
+
+        auth()->user()->stories()->create([
+            'image' => "http://localhost:8000/storage/" . $imagePath
+        ]);
+
+        return redirect('/profile/' . auth()->user()->username);
     }
 
     /**

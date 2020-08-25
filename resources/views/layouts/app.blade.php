@@ -98,6 +98,12 @@
                                             </a>
                                         @endcan
 
+                                        @can('update', Auth::user()->profile)
+                                            <a class="dropdown-item" href="/stories/create" role="button">
+                                                Add New Story
+                                            </a>
+                                        @endcan
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">

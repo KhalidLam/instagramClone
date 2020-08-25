@@ -57,5 +57,8 @@ Route::post('/follow/{user}', 'FollowsController@store');
 
 // Route::resource('stories', 'StoryController');
 
-Route::get('stories/{user}', 'StoryController@show')->name('stories.show');
+Route::get('/stories/create', 'StoryController@create')->name('stories.create');
 
+Route::get('/stories/{user}', 'StoryController@show')->name('stories.show');
+
+Route::post('/stories', 'StoryController@store')->name('stories.store');
