@@ -41,13 +41,13 @@ class StoryController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'image' => ['required', 'image']
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $imagePath = request('image')->store('/story', 'public');
 
         $image = Image::make(public_path("storage/{$imagePath}"));
-
+        $image->resize(500, 751);
         $image->save();
 
         auth()->user()->stories()->create([
