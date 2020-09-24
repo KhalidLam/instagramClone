@@ -46,7 +46,10 @@
                     </div>
 
                     <!-- Card Image -->
-                    <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image" style="max-height: 767px">
+                    <div class="js-post" ondblclick="showLike(this, 'like_{{ $post->id }}')">
+                        <i class="fa fa-heart"></i>
+                        <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image" style="max-height: 767px">
+                    </div>
 
                     <!-- Card Body -->
                     <div class="card-body px-3 py-2">
@@ -248,6 +251,16 @@
             copyText.setSelectionRange(0, 99999)
             document.execCommand("copy");
         }
+
+        function showLike(e, id) {
+            console.log("Like: ", id);
+            var heart = e.firstChild;
+            heart.classList.add('fade');
+            setTimeout(() => {
+                heart.classList.remove('fade');
+            }, 2000);
+        }
+
     </script>
 
     {{-- <script>

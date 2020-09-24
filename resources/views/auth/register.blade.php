@@ -61,7 +61,8 @@
 
 
         <div class="container-login100-form-btn">
-            <button type="submit" class="login100-form-btn" >
+            <button type="submit" class="login100-form-btn">
+                <span class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
                 Register
             </button>
         </div>

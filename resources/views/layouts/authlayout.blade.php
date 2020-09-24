@@ -14,8 +14,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 </head>
 <body>
     <div class="limiter">
@@ -75,11 +75,29 @@
 					</div>
 				</form> --}}
 
-                @yield('form')
+					@yield('form')
 
 				<div class="login100-more" style="background-image: url('{{ asset('img/bg-01.jpg') }}');"></div>
 			</div>
 		</div>
 	</div>
+
+	<script>
+
+		document.querySelector('.login100-form').addEventListener('submit', function(e){
+			var error = document.querySelector('.is-invalid');
+			if(error) hideLoading();
+			showLoading();
+		})
+
+		function showLoading() {
+			document.querySelector('.spinner-border').classList.remove('d-none')
+		}
+
+		function hideLoading() {
+			document.querySelector('.spinner-border').classList.add('d-none')
+		}
+
+	</script>
 </body>
 </html>

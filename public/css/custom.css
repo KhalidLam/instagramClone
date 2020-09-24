@@ -33,7 +33,7 @@ textarea {
 }
 
 .btn:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .border-linear {
@@ -42,4 +42,28 @@ textarea {
     border: 2px solid;
     border: 2px solid #e4524e;
     border-radius: 50%;
+}
+
+.js-post {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.js-post i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    z-index: 99;
+    font-size: 40px;
+    opacity: 0;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.js-post i.fade {
+    opacity: 1;
 }

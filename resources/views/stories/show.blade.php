@@ -26,6 +26,11 @@
 
           <div id="back"></div>
           <div id="next"></div>
+
+
+            <a href="/profile/{{$user->username}}" >
+              <span class="close">x</span>
+            </a>
         </div>
     </div>
 

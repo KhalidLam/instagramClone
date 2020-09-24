@@ -66,7 +66,7 @@ class StoryController extends Controller
     public function show(User $user)
     {
         $stories = $user->stories;
-        return view('stories.show', compact('stories'));
+        return view('stories.show', compact('stories', 'user'));
     }
 
     /**
