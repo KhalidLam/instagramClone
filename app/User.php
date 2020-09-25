@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function following()
     {
-        return $this->belongsToMany(Profile::class);
+        return $this->belongsToMany(Profile::class)->withTimestamps();
     }
 
     // change default search by id to username for ex

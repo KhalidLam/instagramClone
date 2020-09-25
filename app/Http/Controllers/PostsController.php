@@ -34,6 +34,8 @@ class PostsController extends Controller
         // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
         $posts = Post::whereIn('user_id', $users_id)->with('user')->latest()->paginate(10)->getCollection();
 
+        // dd($posts);
+
         return view('posts.index', compact('posts', 'sugg_users'));
     }
 
@@ -76,7 +78,9 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        $posts = $post->user->posts->except($post->id);
+        // dd($posts, $post);
+        return view('posts.show', compact('post', 'posts'));
     }
 
     public function updatelikes(Request $request, $post)
