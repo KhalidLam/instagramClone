@@ -27,8 +27,8 @@
     <div id="app">
 
         <!-- Header section -->
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container px-2">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
 
                 <!-- Logo -->
                 <a href="{{ url('/') }}" class="navbar-brand">
@@ -76,7 +76,7 @@
                                     <i class="far fa-heart fa-2x"></i>
                                 </a>
                             </li> --}}
-                            <li class="nav-item px-2">
+                            <li class="nav-item pl-2">
                                 <a href="/profile/{{Auth::user()->username}}" class="nav-link" style="width: 42px; height: 22px; padding-top: 6px;" >
                                     <img src="{{ asset(Auth::user()->profile->getProfileImage())  }}" class="rounded-circle w-100">
                                     {{-- <i class="far fa-user fa-2x"></i> --}}
@@ -85,7 +85,7 @@
 
                             <!-- Add more dropdown in Profile Page -->
                             <!-- To get current routedd(Route::currentRouteName())  -->
-                            @if (Route::is('profile.index'))
+                            {{-- @if (Route::is('profile.index')) --}}
 
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
@@ -115,7 +115,7 @@
                                         </form>
                                     </div>
                                 </li>
-                            @endif
+                            {{-- @endif --}}
 
                         @endguest
                     </ul>
@@ -123,12 +123,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <!-- Content section -->
+        <div class="pt-3 mt-5">
             @yield('content')
-        </main>
+        </div>
+
     </div>
 
     @yield('exscript')
 
 </body>
 </html>
+
