@@ -79,7 +79,6 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $posts = $post->user->posts->except($post->id);
-        // dd($posts, $post);
         return view('posts.show', compact('post', 'posts'));
     }
 

@@ -47,16 +47,7 @@ Route::any('/search', 'ProfilesController@search')->name('profile.search'); // S
 // Follow Route
 Route::post('/follow/{user}', 'FollowsController@store');
 
-// Route::resources([
-//     'likes' => 'LikeController',
-// ]);
-
-// Route::get('/story', function () {
-//     return view('posts.story');
-// });
-
-// Route::resource('stories', 'StoryController');
-
+// Stories Route
 Route::get('/stories/create', 'StoryController@create')->name('stories.create');
 
 Route::get('/stories/{user}', 'StoryController@show')->name('stories.show');
