@@ -36,6 +36,15 @@
                                     <div class="modal-content">
                                         <ul class="list-group">
                                             <a href="#"><li class="btn list-group-item">Unfollow</li></a>
+                                            @can('delete', $post)
+                                                <form action="{{url()->action('PostsController@destroy', $post->id)}}" method="POST">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <li class="btn btn-danger list-group-item">
+                                                        <button class="btn" type="submit">Delete</button>
+                                                        </li>
+                                                </form>
+                                            @endcan
                                             <a href="/p/{{ $post->id }}"><li class="btn list-group-item">Go to post</li></a>
                                             <a href="#"><li class="btn list-group-item" data-dismiss="modal">Cancel</li></a>
                                         </ul>

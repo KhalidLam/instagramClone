@@ -41,7 +41,7 @@ class PostsController extends Controller
 
     public function explore()
     {
-        $posts = Post::all()->except(Auth::id())->shuffle();;
+        $posts = Post::all()->except(Auth::id())->shuffle();
 
         return view('posts.explore', compact('posts'));
     }
@@ -74,6 +74,15 @@ class PostsController extends Controller
         return redirect('/profile/' . auth()->user()->username);
         // return redirect()->route('profile.index', ['user' => auth()->user()]);
 
+    }
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return Redirect::back();
     }
 
     public function show(Post $post)

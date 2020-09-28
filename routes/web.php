@@ -27,6 +27,8 @@ Route::post('like/{like}', 'LikeController@update2')->name('like.create');
 
 Route::post('/p', 'PostsController@store')->name('post.store');
 
+Route::delete('/p/{post}', 'PostsController@destroy')->name('post.destroy');
+
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
 
 Route::post('/p/{post}', 'PostsController@updatelikes')->name('post.update'); //  This need more time
