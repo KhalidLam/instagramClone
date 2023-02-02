@@ -26,6 +26,6 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
         "vue-infinite-loading": "^2.4.5",
-        "vue-resource": "^1.5.1"
+        "vue-resource": "^1.5.3"
     }
 }
